@@ -160,3 +160,6 @@ for i in range(len(data)):
     print()
 
 print(count)
+
+# guesses 
+# 2196
