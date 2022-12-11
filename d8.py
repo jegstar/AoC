@@ -109,7 +109,6 @@ data = [[int(x) for x in y] for y in input.splitlines()]
 
 visible = [[False for _ in range(len(data[0]))] for __ in range(len(data))]
 
-maxes =[[dict() for _ in range(len(data[0]))] for __ in range(len(data))]
 for i in range(len(data)):
     visible [i][0] = True
     max = data[i][0]
@@ -150,14 +149,43 @@ for i in range(len(data)):
 
 count = 0
 
+f = open('output.html', 'w')
+f.write('''
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started</title>
+  </head>
+<style>
+.visible {
+font-weight:bold;
+color:red;
+}
+
+body {
+    font-family:monospace;
+}
+</style>
+  <body>
+    ''')
+
 for i in range(len(data)):
     for j in range(len(data[0])):
         if visible[i][j]:
-            print('V', end=' ')
+            print('V', end='')
+            f.write('<span class="tile visible" data-row:"' + str(i) + '" data-col:"' + str(j) + '">' + str(data[i][j]) + "</span>")
             count += 1
         else:
-            print('. ', end='')
+            print('.', end='')
+            f.write('<span class="tile" data-row:"' + str(i) + '" data-col:"' + str(j) + '">' + str(data[i][j]) + "</span>")
     print()
+    f.write('<br>')
+f.write('''
+  </body>
+  <script src="aoc.js"></script>
+</html>''')
+f.close()
 
 print(count)
 
