@@ -13,6 +13,7 @@ with open('AoC/d4.txt') as f:
 total = 0
 pairs = 0
 p2 = 0
+
 lines = input.splitlines()
 for line in lines:
     l = re.split(r'[,-]', line)
@@ -25,8 +26,11 @@ for line in lines:
     if l[0] == l[2] and l[1] == l[3]:
         pairs += 1
     
+    # part 2
     if l[1] < l[2] or l[3] < l[0]:
         print(l)
         p2 += 1
+
+# part 2
 print(total, pairs, total - pairs)
 print(len(lines)-p2)
